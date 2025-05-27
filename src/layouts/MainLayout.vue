@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="theme-header">
       <q-toolbar>
         <q-btn
           flat
@@ -15,7 +15,14 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          flat
+          dense
+          round
+          :icon="themeStore.currentTheme === 'modern' ? 'brightness_3' : 'wb_sunny'"
+          aria-label="Toggle Theme"
+          @click="toggleTheme"
+        />
       </q-toolbar>
     </q-header>
 
@@ -24,17 +31,32 @@
       show-if-above
       bordered
     >
-      <q-list>
-        <q-item-label
-          header
+      <q-list dense>
+        <q-item-label header>Sayfalar</q-item-label>
+        <q-item
+          v-for="page in appPages"
+          :key="page.title"
+          clickable
+          :to="page.to"
+          active-class="q-item--active"
+          dense
         >
-          Essential Links
-        </q-item-label>
-
+          <q-item-section avatar>
+            <q-icon :name="page.icon" />
+          </q-item-section>
+          <q-item-section>
+            {{ page.title }}
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <q-separator spaced />
+      <q-list dense>
+        <q-item-label header>Essential Links</q-item-label>
         <EssentialLink
           v-for="link in linksList"
           :key="link.title"
           v-bind="link"
+          dense
         />
       </q-list>
     </q-drawer>
@@ -48,6 +70,7 @@
 <script setup>
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import { useThemeStore } from 'src/stores/theme'
 
 const linksList = [
   {
@@ -94,9 +117,24 @@ const linksList = [
   }
 ]
 
+const appPages = [
+  { title: 'Dashboard', icon: 'dashboard', to: '/app/dashboard' },
+  { title: 'Mal Kabul', icon: 'assignment', to: '/app/mal-kabul' },
+  { title: 'Kalite Kontrol', icon: 'check_circle', to: '/app/kalite-kontrol' },
+  { title: 'Stok', icon: 'inventory', to: '/app/stok' },
+  { title: 'Depo', icon: 'store', to: '/app/depo' },
+  { title: 'Admin', icon: 'admin_panel_settings', to: '/app/admin' }
+]
+
 const leftDrawerOpen = ref(false)
+const themeStore = useThemeStore()
 
 function toggleLeftDrawer () {
   leftDrawerOpen.value = !leftDrawerOpen.value
+}
+
+function toggleTheme() {
+  const newTheme = themeStore.currentTheme === 'modern' ? 'classic' : 'modern'
+  themeStore.setTheme(newTheme)
 }
 </script>

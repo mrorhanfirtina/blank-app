@@ -1,0 +1,98 @@
+:root {
+  /* Modern tema varsayılan değerleri */
+  --q-primary: #2C3E50;
+  --q-secondary: #34495E;
+  --q-accent: #E67E22;
+  --q-dark: #1A1A1A;
+  --q-background: #F5F6FA;
+  --q-surface: #FFFFFF;
+  --q-text: #2C3E50;
+  --q-text-light: #7F8C8D;
+}
+
+/* Genel stil sınıfları */
+.theme-card {
+  background: var(--q-surface);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-page {
+  background: var(--q-background);
+  min-height: 100vh;
+}
+
+.theme-text {
+  color: var(--q-text);
+}
+
+.theme-text-light {
+  color: var(--q-text-light);
+}
+
+/* Buton stilleri */
+.theme-button {
+  background: var(--q-primary);
+  color: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+.theme-button:hover {
+  background: var(--q-secondary);
+  transform: translateY(-1px);
+}
+
+/* Input stilleri */
+.theme-input {
+  background: var(--q-surface);
+  border: 1px solid var(--q-text-light);
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: var(--q-text);
+}
+
+.theme-input:focus {
+  border-color: var(--q-primary);
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+/* Tablo stilleri */
+.theme-table {
+  background: var(--q-surface);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.theme-table th {
+  background: var(--q-primary);
+  color: white;
+}
+
+.theme-table tr:nth-child(even) {
+  background: var(--q-background);
+}
+
+/* Header stilleri */
+.theme-header {
+  background: var(--q-primary);
+  color: white;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar stilleri */
+.theme-sidebar {
+  background: var(--q-surface);
+  border-right: 1px solid var(--q-text-light);
+}
+
+/* Badge stilleri */
+.theme-badge {
+  background: var(--q-accent);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+} 
